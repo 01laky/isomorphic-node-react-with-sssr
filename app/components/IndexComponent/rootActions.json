@@ -1,0 +1,9 @@
+{
+
+    "/demo": "LIST_LOAD",
+    "/demo2": {
+        "1": "LIST2_LOAD",
+        "2": "LIST3_LOAD"
+    }
+
+}
