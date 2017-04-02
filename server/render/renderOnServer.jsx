@@ -27,13 +27,14 @@ const createInitialState = store => {
 const createPageRender = (
   { staticComponent, initialState, headAssets, appScripts, staticStyles }
 ) => {
+  const { meta, title, link } = headAssets;
   return `
 <!doctype html>
 <html>
   <head>
-    ${headAssets.title.toString()}
-    ${headAssets.meta.toString()}
-    ${headAssets.link.toString()}
+    ${title.toString()}
+    ${meta.toString()}
+    ${link.toString()}
   </head>
   <body>
     ${appScripts.map(appScript => appScript)}

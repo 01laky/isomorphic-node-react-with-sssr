@@ -24,11 +24,13 @@ export default (app) => {
 
   app.set('trust proxy', 'loopback');
 
-  console.log('----------------------------------------------------------------------------------------');
+  console.log('---------------------------------------------------');
   console.log('');
-  console.log(`===> Starting server app . . . && Environment: ${ENV} && Listening on port: ${app.get('port')}`);
+  console.log('===> App started ...');
+  console.log(`===> Environment: ${ENV}`);
+  console.log(`===> Listening on port: ${app.get('port')}`);
   console.log('');
-  console.log('----------------------------------------------------------------------------------------');
+  console.log('---------------------------------------------------');
 
   app.use(flash());
 };

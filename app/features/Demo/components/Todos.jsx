@@ -7,7 +7,7 @@ import TodoForm from './TodoForm';
 export default class Todos extends BaseComponent {
   static propTypes = {
     todos: PropTypes.array.isRequired,
-    onOpen: PropTypes.func.isRequired,
+    onOpen: PropTypes.func.isRequired
   }
 
   render() {
@@ -17,32 +17,38 @@ export default class Todos extends BaseComponent {
         <div className="col-md-offset-1 col-md-10">
           <div className="row">
             <h3 className="col-md-offset-1 col-md-3">
-              TODO ID
-            </h3>
-            <h3 className="col-md-4">
               TODO TITLE
             </h3>
-            <h3 className="col-md-4">
+            <h3 className="col-md-3">
               TODO CONTENT
+            </h3>
+            <h3 className="col-md-4">
+              CREATED
             </h3>
           </div>
           <hr />
           {(todos && todos.length > 0) && todos.map(todo => (
             <div onClick={onOpen(todo.id)} key={`todo-element-${todo.id}`} className="row">
               <h3 className="col-md-offset-1 col-md-3">
-                {todo.id}&
-              </h3>
-              <h3 className="col-md-1">
-                |
-              </h3>
-              <h3 className="col-md-3">
                 {todo.todoTitle}
               </h3>
               <h3 className="col-md-1">
                 |
               </h3>
-              <h3 className="col-md-3">
+              <h3 className="col-md-2">
                 {todo.todoContent}
+              </h3>
+              <h3 className="col-md-1">
+                |
+              </h3>
+              <h3 className="col-md-2">
+                {todo.id}
+              </h3>
+              <h3 className="col-md-1">
+                |
+              </h3>
+              <h3 className="col-md-1">
+                DEL
               </h3>
             </div>
           )) || (

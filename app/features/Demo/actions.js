@@ -11,10 +11,11 @@ export default dispatch => ({
 const localState = state => state.demo;
 
 export function injectState(state) {
-  const { todoList, loading, openAction } = localState(state);
+  const { todoList, loading, openAction, openId } = localState(state);
   return {
     todos: todoList,
     loading,
-    openAction
+    openAction,
+    openId
   };
 }

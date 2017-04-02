@@ -9,7 +9,8 @@ export default class TodoWrap extends BaseComponent {
     create: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
     update: PropTypes.func.isRequired,
-    todo: PropTypes.object,
+    todos: PropTypes.array.isRequired,
+    openId: PropTypes.any,
   }
 
   handleOnCreate = data => {
@@ -19,24 +20,26 @@ export default class TodoWrap extends BaseComponent {
   }
 
   handleOnUpdate = data => {
-    const {props: {todo: {id}, update, closeModal}} = this;
-    update(data, id);
+    const {props: {todos, update, closeModal, openId}} = this;
+    const todo = todos.find(todo => todo.id === openId)
+    update(data, todo.id);
     return closeModal();
   }
 
   render() {
-    const {props: {todo}} = this;
+    const {props: {todos, openId}} = this;
+    const todo = openId ? todos.find(todo => todo.id === openId) : null;
     const initialValues = todo ? {...todo} : {};
     return (
       <Modal
         visible
         effect="fadeInUp"
         width="450"
-        height="500"
+        height="400"
         onClickAway={() => this.props.closeModal()}
       >
         <div className="row">
-          <h2 className="col-md-offset-1 col-md-10">
+          <h2 className="col-md-offset-3 col-md-7">
             {todo ? 'Update todo' : 'Create todo'}
           </h2>
         </div>
@@ -45,6 +48,7 @@ export default class TodoWrap extends BaseComponent {
             <TodoForm
               onSubmit={todo ? this.handleOnUpdate : this.handleOnCreate}
               initialValues={initialValues}
+              todo={todo}
             />
           </div>
         </div>

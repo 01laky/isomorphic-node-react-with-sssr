@@ -9,7 +9,6 @@ import renderMiddleware from './render/middleware';
 const app = express();
 
 if (isDebug) {
-  // enable webpack hot module replacement
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('../webpack/webpack.config');
@@ -20,9 +19,6 @@ if (isDebug) {
   app.use(webpackHotMiddleware(compiler));
 }
 
-/*
- * Bootstrap application settings
- */
 initExpress(app);
 const redisClient = redis.createClient();
 initRoutes(app, redisClient);

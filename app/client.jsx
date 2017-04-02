@@ -14,7 +14,9 @@ const initialState = window.__STATIC_INITIAL_STATE__;
 window.Promise = Promise;
 
 const store = configureStore(initialState, browserHistory);
-const history = syncHistoryWithStore(browserHistory, store, {adjustUrlOnReplay: false});
+const history = syncHistoryWithStore(browserHistory, store, {
+  adjustUrlOnReplay: false
+});
 const routes = createRouter(store);
 render(
   <Provider store={store}>

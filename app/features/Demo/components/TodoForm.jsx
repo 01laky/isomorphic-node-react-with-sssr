@@ -10,11 +10,12 @@ const formKey = 'todo-form';
 })
 export default class TodoForm extends BaseComponent {
   static propTypes = {
-    handleSubmit: PropTypes.func,
+    handleSubmit: PropTypes.func.isRequired,
+    todo: PropTypes.object,
   }
 
   render() {
-    const { props: { handleSubmit } } = this;
+    const { props: { handleSubmit, todo } } = this;
     return (
       <form onSubmit={handleSubmit}>
         <hr />
@@ -28,10 +29,14 @@ export default class TodoForm extends BaseComponent {
           <Field className="form-control" placeholder="Todo content text" name="todoContent" component="textArea" />
         </div>
         <hr />
-        <div className="form-group">
-          <button className="btn btn-success" type="submit">
-            Create todo
-          </button>
+        <div className="row">
+          <div className="col-md-offset-3 col-md-6">
+            <div className="form-group">
+              <button className="btn btn-success" type="submit">
+                {todo ? 'Update todo' : 'Create todo'}
+              </button>
+            </div>
+          </div>
         </div>
         <hr />
       </form>

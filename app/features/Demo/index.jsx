@@ -16,11 +16,12 @@ export default class Demo extends IndexComponent {
     loading: PropTypes.bool.isRequired,
     openTodoForm: PropTypes.func.isRequired,
     openAction: PropTypes.string,
+    openId: PropTypes.string,
     closeTodoForm: PropTypes.func.isRequired,
   };
 
-  handleOpenTodoForm = () => {
-    return this.props.openTodoForm();
+  handleOpenTodoForm = todoId => {
+    return this.props.openTodoForm(todoId);
   };
 
   handleCloseModal = () => {
@@ -34,14 +35,17 @@ export default class Demo extends IndexComponent {
   }
 
   render() {
-    const { props: { loading, openAction, todos } } = this;
+    const { props: { loading, openAction, todos, openId } } = this;
     console.log("MIAU MIAU PROPS => ", this.props.todos.reverse);
     return (
       <div>
         {!!openAction &&
           <TodoWrap
             create={this.props.createTodo}
+            update={this.props.updateTodo}
             closeModal={this.handleCloseModal}
+            todos={todos}
+            openId={openId}
           />}
         <div className="col-md-12">
           <div className="row">
@@ -56,7 +60,7 @@ export default class Demo extends IndexComponent {
                 <Preloader />
               </div>
             </div>) ||
-            <Todos onOpen={this.handleOpenUpdateForm} todos={todos} />}
+            <Todos onOpen={this.handleOpenUpdateForm} todos={todos.reverse()} />}
           <br /><br />
           <div className="row">
             <div className="col-md-offset-4 col-md-4">
